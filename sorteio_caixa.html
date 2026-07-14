@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio dos piá</title>
+
+    <style>
+        body{
+            text-align: center;
+        }
+        h1{font-style: italic;}
+        button{
+              border-radius: 10px;
+              background-color: rgb(240, 100, 18);
+              height: 35px;
+              width: 100px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              cursor: pointer;
+              margin-right: 30px;
+        }
+        button:hover{background-color: rgb(245, 114, 97);}
+    </style>
+
+</head>
+<body>
+    <h1>🎁 Sorteio de caixa Premiada 🎁</h1>
+    <button onclick="abrircaixa()">Abrir Caixa</button>
+    <button onclick="mostrarinventario()">Mostrar Itens</button>
+
+    <h2 id="ultimoitem"></h2>
+    <ul id="colecao"></ul>
+
+    <script>
+        let itensPossiveis = [
+            "Espada ⚔️",
+            "Madeira 🪵",
+            "Escudo 🛡️",
+            "Diamante 💎",
+            "Ouro 🥇",
+            "Lixo 🗑️",
+            "Pote de chimia 🫙",
+            "Pão de ontem 🍞"
+        ]
+
+        //vetor que armazena os itens obtidos pelo jogador
+        let inventario = []
+
+        function abrircaixa(){
+            //sorteia um número
+            let sorteado = Math.floor(Math.random() * itensPossiveis.length);
+
+            //pegar o item da posição sorteada
+            let item = itensPossiveis[sorteado];
+
+            //adiciona o item no inventário
+            inventario.push(item);
+
+            //mostrar o item na tela
+            document.getElementById("ultimoitem").innerHTML = "Você recebeu:  " + item;
+        }
+
+        function mostrarinventario(){
+            let lista = document.getElementById("colecao");
+
+            //limpa a lista
+            lista.innerHTML = "";
+
+            //percorre o vetor inventario e mostra na tela
+            for(let i = 0; i < inventario.length; i++){
+                lista.innerHTML += 
+                "<li> " + 
+                    (i + 1) + "º item: "  + inventario[i]
+            "</li>";
+                
+            }
+        }
+    </script>
+</body>
+</html>
